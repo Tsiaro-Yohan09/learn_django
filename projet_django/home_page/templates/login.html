@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Connexion</title>
+</head>
+<body>
+    <h2>Connexion</h2>
+    <!-- <p style="color:red;">Nom d'utilisateur ou mot de passe incorrect</p> -->
+
+    <form method="post">
+        {% csrf_token %}
+       <input type="email" name="email" placeholder="Email"><br><br>
+       <input type="password" name="password" placeholder="Password"><br><br>
+
+        <button type="submit">Se connecter</button>
+    </form>
+</body>
+</html>
