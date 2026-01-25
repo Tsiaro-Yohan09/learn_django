@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import login as auth_login
 
 # Create your views here.
 def register(request):
@@ -23,20 +24,21 @@ def register(request):
 
     return render(request, "register.html")
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
-        email = request.POST["email"]
+        username = request.POST["username"]
         password = request.POST["password"]
-        # user = authenticate(request, email=email, password=password)
-        key = User.objects.get(email=email)
-        print(key.check_password(password))
+        user = authenticate(request, username=username, password=password)
+        # print(email)
         # print(password)
-        if key and key.check_password(password):
-            # login(request, user)
+        # print('>> DEBUG USER', user)
+        if user is not None:
+            login(request, user)
             return redirect("home")
         
         else:
-            return HttpResponse("Mot de passe ou email invalide")
+            return HttpResponse(user)
+            # return HttpResponse("Mot de passe ou email invalide")
          
     return render(request, "login.html")   
     # template = loader.get_template("login.html")
