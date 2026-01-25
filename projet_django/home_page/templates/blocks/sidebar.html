@@ -35,7 +35,7 @@
                 Emplyees
             </div>
             <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="{% url 'liste_employer' %}">
                     <i class="fa-solid fa-file-invoice"></i>
                     <span>Liste</span>
                 </a>

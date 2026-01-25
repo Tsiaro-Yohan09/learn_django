@@ -34,7 +34,7 @@ def create_employee(request):
         )
         new_employee.save()
         
-        return HttpResponse("Employer bien enregistrés")
+        return redirect("/liste_employer")
     
     return render(request, "create_employee.html")
 
@@ -48,3 +48,8 @@ def list_employee(request):
     }
     
     return HttpResponse(template.render(context, request))
+
+def information_employee(request, id):
+    employee = Employee.objects.get(id=id)
+    
+    return render(request, "informations.html", {"employee": employee})
