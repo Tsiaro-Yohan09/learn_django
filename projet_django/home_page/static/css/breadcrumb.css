@@ -1,0 +1,64 @@
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    background: transparent;
+    /* border-radius: 10px; */
+    /* gap: 0; */
+    font-family: "Inter", sans-serif;
+    margin: 0 !important;
+}
+
+.breadcrumb a {
+    position: relative;
+    padding: 5px 30px;
+    color: #1e3f7b;
+    text-decoration: none;
+    margin-right: 0px;
+    border-radius: 0px;
+    font-weight: 500;
+    /* box-shadow: 0 1px 2px rgba(0,0,0,0.05); */
+    transition: background 0.25s;
+    background: linear-gradient(to right, #a0bcf8 65%, #eff2fa 100%);
+}
+
+/* Flèche pleine moderne */
+.breadcrumb a::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -23px;
+    width: 0;
+    height: 0;
+
+    border-top: 16px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 23px solid #eff2fa;
+    transition: border-left-color 0.25s;
+    z-index: 10;
+}
+
+/* Hover plus doux */
+.breadcrumb a:hover {
+    /* background: #acc6f8; */
+    transition: background 0.25s;
+    background: linear-gradient(to right, #b0c8fc 65%, #e6ecfa 100%);
+}
+
+.breadcrumb a:hover::after {
+    transition: background 0.25s;
+    border-left-color: #e6ecfa;
+}
+
+/* Dernier item (actif) */
+.breadcrumb .active {
+    transition: background 0.25s;
+    /* background: #2b63d9; */
+    background: linear-gradient(to right, #2b63d9 65%, #e6ecfa 100%);
+    color: white;
+}
+
+.breadcrumb .active::after {
+    transition: background 0.25s;
+    border-left-color: #e6ecfa;
+}
