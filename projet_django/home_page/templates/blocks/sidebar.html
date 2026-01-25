@@ -32,10 +32,10 @@
         {% if request.user.is_authenticated %}
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
-                Societe
+                Emplyees
             </div>
-            <li class="nav-item {% if current_page|default:0 == 2 %}active{% endif %}">
-                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
+                <a class="nav-link collapsed" href="">
                     <i class="fa-solid fa-file-invoice"></i>
                     <span>Liste</span>
                 </a>
@@ -46,10 +46,10 @@
             {% if request.user.is_staff or request.user.is_superuser %}
                 <hr class="sidebar-divider">
                 <div class="sidebar-heading">
-                    Emplyees
+                    Societe
                 </div>
-                <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
-                    <a class="nav-link collapsed" href="">
+                <li class="nav-item {% if current_page|default:0 == 2 %}active{% endif %}">
+                    <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fa-solid fa-file-invoice"></i>
                         <span>Liste</span>
                     </a>
