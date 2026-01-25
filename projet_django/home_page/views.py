@@ -27,17 +27,16 @@ def login(request):
     if request.method == "POST":
         email = request.POST["email"]
         password = request.POST["password"]
-        # username = request.POST["password"]
-        user = authenticate(request, email=email, password=password)
-        # print(email)
+        # user = authenticate(request, email=email, password=password)
+        key = User.objects.get(email=email)
+        print(key.check_password(password))
         # print(password)
-        if user is not None:
-            login(request, user)
+        if key and key.check_password(password):
+            # login(request, user)
             return redirect("home")
         
         else:
-            return HttpResponse(user)
-            # return HttpResponse("Mot de passe ou email invalide")
+            return HttpResponse("Mot de passe ou email invalide")
          
     return render(request, "login.html")   
     # template = loader.get_template("login.html")
