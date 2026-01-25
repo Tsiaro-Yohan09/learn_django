@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR / ".env")
+
+# print("DEBUG BASE_DIR = ", BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -76,13 +81,16 @@ WSGI_APPLICATION = 'projet_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bdd_learn_django',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # ou l'IP de votre serveur
-        'PORT': '3306',        # port par défaut de MySQL
+        'NAME': os.getenv('DB_NAME', ''),       # valeur par défaut si pas dans .env
+        'USER': os.getenv('DB_USER', 'root'),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', ''),                   # 3306 par défaut, toi tu mets 3308 dans .env
     }
 }
+
+# print("DEBUG DATABASES = ", DATABASES)
+
 
 
 # Password validation
