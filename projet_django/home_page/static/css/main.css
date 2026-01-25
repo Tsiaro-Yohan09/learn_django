@@ -1,0 +1,19 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 20px;
+    height: 100%;
+}
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}

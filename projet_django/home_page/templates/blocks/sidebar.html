@@ -1,0 +1,60 @@
+{% load static %}
+
+<div class="sidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">WP Admin <sup>2</sup></div>
+        </a>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item {% if current_page|default:0 == 1 %}active{% endif %}">
+            <a class="nav-link" href="{% url 'home' %}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Tableau de bord</span>
+            </a>
+        </li>
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Authentification
+        </div>
+        <li class="nav-item {% if current_page|default:0 == 2 %}active{% endif %}">
+            <a class="nav-link collapsed" href="{% url 'register' %}" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fa-solid fa-user-tag"></i>
+                <span>S'inscrire</span>
+            </a>
+        </li>
+
+        {% if request.user.is_authenticated %}
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Societe
+            </div>
+            <li class="nav-item {% if current_page|default:0 == 2 %}active{% endif %}">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Liste</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+            {% if request.user.is_staff or request.user.is_superuser %}
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">
+                    Emplyees
+                </div>
+                <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
+                    <a class="nav-link collapsed" href="">
+                        <i class="fa-solid fa-file-invoice"></i>
+                        <span>Liste</span>
+                    </a>
+                </li>
+            {% endif %}
+        {% endif %}
+    </ul>
+</div>

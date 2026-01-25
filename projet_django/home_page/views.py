@@ -23,28 +23,24 @@ def register(request):
 
         return redirect("login")
 
-    return render(request, "register.html")
+    return render(request, "auth/register.html")
 
 def login_view(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
-        # print(email)
-        # print(password)
-        # print('>> DEBUG USER', user)
         if user is not None:
             login(request, user)
             return redirect("home")
         
         else:
             return HttpResponse(user)
+         
             # return HttpResponse("Mot de passe ou email invalide")
          
     return render(request, "login.html")
 
 @login_required
 def home(request):
-    template = loader.get_template("home/index.html")
-    
-    return HttpResponse(template.render())
+    return render(request, 'home/index.html')

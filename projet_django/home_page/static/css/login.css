@@ -1,0 +1,35 @@
+.primary-color {
+    color: #367FF0; 
+}
+.primary-dark-color {
+    color: #1a53ab; 
+}
+.primary-color-hover {
+    color: #5b9bff; 
+}
+.primary-color-active {
+    color: #1662d7; 
+}
+.primary-color-gradient {
+    color: #42a9cf; 
+}
+
+.wrp-left-content {
+    background-image:url('/images/page/constellation.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrp-right-content {
+    background-color: #79464f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
