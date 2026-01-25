@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.contrib.auth import login as auth_login
 
 # Create your views here.
 def register(request):
@@ -46,7 +45,7 @@ def login_view(request):
 
 def home(request):
     template = loader.get_template("home/index.html")
-    
-    return HttpResponse(template.render())
+    message = 'Content page'
+    return HttpResponse(template.render({'message': message}))
     # return render(request, template)
     # return HttpResponse("Hello bonjour")
