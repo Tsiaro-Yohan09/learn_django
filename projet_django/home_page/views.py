@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import login as auth_login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def register(request):
@@ -40,13 +41,10 @@ def login_view(request):
             return HttpResponse(user)
             # return HttpResponse("Mot de passe ou email invalide")
          
-    return render(request, "login.html")   
-    # template = loader.get_template("login.html")
-    # return HttpResponse(template.render())
+    return render(request, "login.html")
 
+@login_required
 def home(request):
     template = loader.get_template("home/index.html")
     
     return HttpResponse(template.render())
-    # return render(request, template)
-    # return HttpResponse("Hello bonjour")
