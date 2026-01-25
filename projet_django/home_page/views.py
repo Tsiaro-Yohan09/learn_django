@@ -21,7 +21,7 @@ def register(request):
 
         return redirect("login")
 
-    return render(request, "register.html")
+    return render(request, "auth/register.html")
 
 def login_view(request):
     if request.method == "POST":
@@ -39,13 +39,14 @@ def login_view(request):
             return HttpResponse(user)
             # return HttpResponse("Mot de passe ou email invalide")
          
-    return render(request, "login.html")   
+    return render(request, "auth/login.html")   
     # template = loader.get_template("login.html")
     # return HttpResponse(template.render())
 
 def home(request):
+    print('request.user.is_authenticated => ', request.user.is_authenticated)
     template = loader.get_template("home/index.html")
     message = 'Content page'
-    return HttpResponse(template.render({'message': message}))
+    return HttpResponse(template.render(request, {'message': message}))
     # return render(request, template)
     # return HttpResponse("Hello bonjour")

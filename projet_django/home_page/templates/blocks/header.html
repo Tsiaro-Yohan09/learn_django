@@ -22,7 +22,7 @@
     
     <div class="user-section">
         {% if request.user.is_authenticated %}
-            <a class="logout" href="{% url 'logout' %}">
+            <a class="logout" href="">
                 Se déconnecter <i class="fa-solid fa-right-from-bracket"></i>
             </a> &nbsp | &nbsp
             <div class="mr-2 d-none d-lg-inline small username-connected">{{ request.user.username }}</div>
