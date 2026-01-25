@@ -28,25 +28,14 @@ def login_view(request):
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
-        # print(email)
-        # print(password)
-        # print('>> DEBUG USER', user)
         if user is not None:
             login(request, user)
             return redirect("home")
         
         else:
             return HttpResponse(user)
-            # return HttpResponse("Mot de passe ou email invalide")
          
     return render(request, "auth/login.html")   
-    # template = loader.get_template("login.html")
-    # return HttpResponse(template.render())
 
 def home(request):
-    print('request.user.is_authenticated => ', request.user.is_authenticated)
-    template = loader.get_template("home/index.html")
-    message = 'Content page'
-    return HttpResponse(template.render(request, {'message': message}))
-    # return render(request, template)
-    # return HttpResponse("Hello bonjour")
+    return render(request, 'home/index.html')
