@@ -22,9 +22,13 @@
     
     <div class="user-section">
         {% if request.user.is_authenticated %}
-            <a class="logout" href="">
-                Se déconnecter <i class="fa-solid fa-right-from-bracket"></i>
-            </a> &nbsp | &nbsp
+            <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout btn text-primary">
+                    Se déconnecter <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </form>
+            &nbsp | &nbsp
             <div class="mr-2 d-none d-lg-inline small username-connected">{{ request.user.username }}</div>
             <div class="initial-name">{{ request.user.username|slice:":2"|upper }}</div>
         {% else %}
