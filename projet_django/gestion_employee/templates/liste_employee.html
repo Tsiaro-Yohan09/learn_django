@@ -25,7 +25,7 @@
                         {% for employee in employees %}
                         <tr>
                             <td>
-                                <strong>{{ employee.name }}</strong><br>
+                                <strong>{{ employee.name.upper }}</strong><br>
                                 <small class="text-muted">{{ employee.first_name }}</small>
                             </td>
                             <td>

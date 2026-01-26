@@ -53,3 +53,33 @@ def information_employee(request, id):
     employee = Employee.objects.get(id=id)
     
     return render(request, "informations.html", {"employee": employee})
+
+def edit_employee(request, id):
+    if id:
+        get_employee = Employee.objects.get(id=id)
+        if request.method == "POST":
+            get_employee.name = request.POST["name"]
+            get_employee.first_name = request.POST["first_name"]
+            get_employee.email = request.POST["email"]
+            get_employee.phone = request.POST["phone"]
+            get_employee.poste = request.POST["poste"]
+            get_employee.departement = request.POST["departement"]
+            get_employee.salary = request.POST["salary"]
+            get_employee.date_embauche = request.POST["date_embauche"]
+            
+            get_employee.save()
+            return redirect("/liste_employer")
+                
+        # get_employee = Employee.objects.get(id=id)
+        return render(request, "edit_employee.html", {"employee": get_employee})
+    else:
+        return HttpResponse("Id not found ou Employer")
+    
+def delete_employee(request, id):
+    get_employee = Employee.objects.get(id=id)
+    if request.method == "POST":
+        get_employee.delete()
+        return redirect("/liste_employer")
+    
+    return render(request, "confirmation_delete.html", {"employee": get_employee})
+    

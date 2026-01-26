@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0">
+                <div class="card-header py-3" style="background-color: #3f6ad8;">
+                    <h5 class="text-white mb-0 text-center">
+                        <i class="bi bi-person-plus-fill me-2"></i>Modifier Informations
+                    </h5>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="row g-2 mb-3">
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Nom</label>
+                                <input type="text" name="name" class="form-control" placeholder="Ex: RABE" value="{{ employee.name }}" required>
+                            </div>
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Prénom</label>
+                                <input type="text" name="first_name" class="form-control" placeholder="Ex: Jean" value="{{ employee.first_name }}" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Email professionnel</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+                                <input type="email" name="email" class="form-control" placeholder="nom@entreprise.com" value="{{ employee.email }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Téléphone</label>
+                                <input type="text" name="phone" class="form-control" placeholder="034..." value="{{ employee.phone }}" required>
+                            </div>
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Poste</label>
+                                <input type="text" name="poste" class="form-control" placeholder="Ex: Analyste" value="{{ employee.poste }}" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Département</label>
+                                <select name="departement" class="form-select">
+                                    <option value="IT">IT</option>
+                                    <option value="RH">RH</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Logistique">Logistique</option>
+                                </select>
+                            </div>
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Salaire (Ar)</label>
+                                <input type="number" name="salary" class="form-control" placeholder="0.00" value="{{ employee.salary }}" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold">Date d'embauche</label>
+                            <input type="date" name="date_embauche" class="form-control" value="{{ employee.date_embauche | date:'Y-m-d' }}" required>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary shadow-sm" style="background-color: #3f6ad8; border: none;">
+                                <i class="bi bi-check-circle me-2"></i>Mettre à jour
+                            </button>
+                            <a href="{% url 'informations_employer' employee.id  %}" class="btn btn-light btn-sm text-muted">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

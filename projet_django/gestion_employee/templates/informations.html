@@ -1,8 +1,4 @@
-{% extends "base.html" %} 
-{% block title %}
-    Détails Employé : {{ employee.name }} {{ employee.first_name }}
-{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -51,10 +47,10 @@
                     <hr>
                     
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="" class="btn btn-warning btn-sm">
+                        <a href="editer_employer/{{employee.id}}" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil-square me-1"></i> Modifier
                         </a>
-                        <a href="" class="btn btn-danger btn-sm">
+                        <a href="supprimer_employer/{{employee.id}}" class="btn btn-danger btn-sm">
                             <i class="bi bi-trash me-1"></i> Supprimer
                         </a>
                     </div>
