@@ -32,12 +32,30 @@
         {% if request.user.is_authenticated %}
             <hr class="sidebar-divider">
             <div class="sidebar-heading">
-                Emplyees
+                Employees
             </div>
             <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
                 <a class="nav-link collapsed" href="{% url 'liste_employer' %}">
                     <i class="fa-solid fa-file-invoice"></i>
-                    <span>Liste</span>
+                    <span>Liste employee</span>
+                </a>
+            </li>
+            <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
+                <a class="nav-link collapsed" href="{% url 'creer_employee' %}">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Creer employee</span>
+                </a>
+            </li>
+            <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
+                <a class="nav-link collapsed" href="{% url 'creer_horaire' %}">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Gerer plannings</span>
+                </a>
+            </li>
+            <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
+                <a class="nav-link collapsed" href="{% url 'liste_plannings' %}">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Liste horaires</span>
                 </a>
             </li>
         {% endif %}

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
-from .models import Employee
+from .models import Employee, Plannings
 
 def create_employee(request):
     if request.method == "POST":
@@ -83,3 +83,30 @@ def delete_employee(request, id):
     
     return render(request, "confirmation_delete.html", {"employee": get_employee})
     
+def create_plannings(request):
+    employee = Employee.objects.all().values()
+    
+    if request.method == "POST":
+        date_work = request.POST["date_work"]
+        status = request.POST["status"]
+        employee_id_id = request.POST["employee_id"]
+        start_time = request.POST["start_time"]
+        end_time = request.POST["end_time"]
+        
+        plannings = Plannings(
+            date_work=date_work,
+            start_time=start_time,
+            end_time=end_time,
+            status=status,
+            employee_id_id=employee_id_id
+        )
+        plannings.save()
+        
+        return redirect("/liste_employer")
+    
+    return render(request, 'create_plannings.html', {"employee": employee})
+
+def liste_plannings(request): 
+    plannings = Plannings.objects.select_related('employee_id').all()
+    
+    return render(request, "liste_plannings.html", {"plannings": plannings})
