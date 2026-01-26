@@ -37,9 +37,12 @@ def login_view(request):
         else:
             return HttpResponse(user)
          
-            # return HttpResponse("Mot de passe ou email invalide")
-         
     return render(request, "auth/login.html")
 
 def home(request):
     return render(request, 'home/index.html')
+
+def profile_user(request):
+    
+    
+    return render(request, "auth/profile_user.html")

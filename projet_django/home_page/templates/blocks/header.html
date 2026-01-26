@@ -30,7 +30,7 @@
             </form>
             &nbsp | &nbsp
             <div class="mr-2 d-none d-lg-inline small username-connected">{{ request.user.username }}</div>
-            <div class="initial-name">{{ request.user.username|slice:":2"|upper }}</div>
+            <div class="initial-name"><a href="{% url 'profile' %}">{{ request.user.username|slice:":2"|upper }}</a></div>
         {% else %}
             <a class="logout" href="{% url 'login' %}">
                 Se connecter <i class="fa-solid fa-right-to-bracket"></i>
