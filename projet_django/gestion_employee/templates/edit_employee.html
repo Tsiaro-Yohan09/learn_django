@@ -50,10 +50,7 @@
                             <div class="col-md">
                                 <label class="form-label small fw-bold">Département</label>
                                 <select name="departement" class="form-select">
-                                    <option value="IT">IT</option>
-                                    <option value="RH">RH</option>
-                                    <option value="Finance">Finance</option>
-                                    <option value="Logistique">Logistique</option>
+                                    <option value="{{ dep.id }}">{{ employee.departement.name_departement }}</option>
                                 </select>
                             </div>
                             <div class="col-md">

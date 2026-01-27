@@ -1,16 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
-from .models import Employee, Plannings
+from .models import Employee, Plannings, Departement
 
 def create_employee(request):
+    departement = Departement.objects.all().values()
     if request.method == "POST":
         name = request.POST["name"]
         first_name = request.POST["first_name"]
         email = request.POST["email"]
         phone = request.POST["phone"]
         poste = request.POST["poste"]
-        departement = request.POST["departement"]
+        departement_id = request.POST["departement"]
         salary = request.POST["salary"]
         date_embauche = request.POST["date_embauche"]
         
@@ -28,7 +29,7 @@ def create_employee(request):
             email=email,
             phone=phone,
             poste=poste,
-            departement=departement,
+            departement_id=departement_id,
             salary=salary,
             date_embauche=date_embauche
         )
@@ -36,18 +37,16 @@ def create_employee(request):
         
         return redirect("/liste_employer")
     
-    return render(request, "create_employee.html")
+    return render(request, "create_employee.html", {"departement": departement})
 
 def list_employee(request):
-    list_employee = Employee.objects.all().values()
-    
-    template = loader.get_template("liste_employee.html")
+    list_employee = Employee.objects.select_related('departement').all()
     
     context = {
         "employees": list_employee,
     }
     
-    return HttpResponse(template.render(context, request))
+    return render(request, "liste_employee.html", {"employees": list_employee})
 
 def information_employee(request, id):
     employee = Employee.objects.get(id=id)
@@ -110,3 +109,18 @@ def liste_plannings(request):
     plannings = Plannings.objects.select_related('employee_id').all()
     
     return render(request, "liste_plannings.html", {"plannings": plannings})
+
+def add_departement(request):
+    if request.method == "POST":
+        name_departement = request.POST["departement"]
+        
+        new_depart = Departement(
+            name_departement=name_departement
+        )
+        new_depart.save()
+        
+        # return redirect("/liste_employer")
+    
+    
+    return render(request, "departement/add_departement.html")
+    

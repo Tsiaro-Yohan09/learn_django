@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0">
+                <div class="card-header py-3" style="background-color: #3f6ad8;">
+                    <h5 class="text-white mb-0 text-center">
+                        <i class="bi bi-person-plus-fill me-2"></i>Ajouter Departement
+                    </h5>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Nom Departement</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+                                <input type="text" name="departement" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary shadow-sm" style="background-color: #3f6ad8; border: none;">
+                                <i class="bi bi-check-circle me-2"></i>Ajouter
+                            </button>
+                            <a href="" class="btn btn-light btn-sm text-muted">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -48,10 +48,9 @@
                             <div class="col-md">
                                 <label class="form-label small fw-bold">Département</label>
                                 <select name="departement" class="form-select">
-                                    <option value="IT">IT</option>
-                                    <option value="RH">RH</option>
-                                    <option value="Finance">Finance</option>
-                                    <option value="Logistique">Logistique</option>
+                                    {% for dep in departement %}
+                                    <option value="{{ dep.id }}">{{ dep.name_departement }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md">
