@@ -89,11 +89,13 @@ def create_plannings(request):
         date_work = request.POST["date_work"]
         status = request.POST["status"]
         employee_id_id = request.POST["employee_id"]
+        heure_retard = request.POST["heure_retard"]
         start_time = request.POST["start_time"]
         end_time = request.POST["end_time"]
         
         plannings = Plannings(
             date_work=date_work,
+            heure_retard=heure_retard,
             start_time=start_time,
             end_time=end_time,
             status=status,

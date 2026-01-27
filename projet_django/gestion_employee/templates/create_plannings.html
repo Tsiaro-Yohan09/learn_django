@@ -7,7 +7,7 @@
             <div class="card shadow-lg border-0">
                 <div class="card-header py-3" style="background-color: #3f6ad8;">
                     <h5 class="text-white mb-0 text-center">
-                        <i class="bi bi-person-plus-fill me-2"></i>Gestion des Horaires
+                        <i class="bi bi-person-plus-fill me-2"></i>Gestion de presence
                     </h5>
                 </div>
                 
@@ -27,11 +27,19 @@
 
                             <div class="col-md">
                                 <label class="form-label small fw-bold">Status</label>
-                                <select name="status" class="form-select">
+                                <select id="select_status" name="status" class="form-select" onclick="toggleInput()">
                                     <option value="Confirmé">Confirmé</option>
                                     <option value="Absent">Absent</option>
-                                    <option value="Remplacer">Remplacer</option>
+                                    <option value="Retard">Retard</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div id="id_heure_retard" class="mb-3">
+                            <label class="form-label small fw-bold">Heure de retard</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+                                <input type="time" name="heure_retard" class="form-control">
                             </div>
                         </div>
 
@@ -71,5 +79,17 @@
     </div>
 </div>
 
+<script>
+function toggleInput() {
+    var select = document.getElementById("select_status");
+    var extraField = document.getElementById("id_heure_retard");
+    
+    if (select.value == "Retard") {
+        extraField.style.display = "block";
+    } else {
+        extraField.style.display = "none";
+    }
+}
+</script>
 
 {% endblock %}

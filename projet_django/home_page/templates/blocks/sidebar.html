@@ -47,15 +47,15 @@
                 </a>
             </li>
             <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
-                <a class="nav-link collapsed" href="{% url 'creer_horaire' %}">
+                <a class="nav-link collapsed" href="{% url 'gerer_presence' %}">
                     <i class="fa-solid fa-file-invoice"></i>
-                    <span>Gerer plannings</span>
+                    <span>Gerer presence</span>
                 </a>
             </li>
             <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
-                <a class="nav-link collapsed" href="{% url 'liste_plannings' %}">
+                <a class="nav-link collapsed" href="{% url 'liste_presence' %}">
                     <i class="fa-solid fa-file-invoice"></i>
-                    <span>Liste horaires</span>
+                    <span>Liste presence</span>
                 </a>
             </li>
         {% endif %}

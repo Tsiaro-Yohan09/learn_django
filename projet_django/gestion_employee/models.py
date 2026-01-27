@@ -1,4 +1,5 @@
 from tkinter import CASCADE
+from turtle import mode
 from django.db import models
 
 class Employee(models.Model):
@@ -15,6 +16,7 @@ class Employee(models.Model):
 class Plannings(models.Model):
     employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='horaires')
     date_work = models.DateField()
+    heure_retard = models.TimeField(null=True, blank=True)
     start_time = models.TimeField()
     end_time = models.TimeField()
     status = models.TextField()
