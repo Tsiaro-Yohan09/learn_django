@@ -126,3 +126,7 @@ def add_departement(request):
     
     return render(request, "departement/add_departement.html")
     
+def list_departement(request):
+    departement = Departement.objects.all().values()
+    
+    return render(request, "departement/list_departement.html", {"departement": departement})

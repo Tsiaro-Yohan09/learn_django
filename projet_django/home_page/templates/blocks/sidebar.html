@@ -58,6 +58,12 @@
                     <span>Liste presence</span>
                 </a>
             </li>
+            <li class="nav-item {% if current_page|default:0 == 4 %}active{% endif %}">
+                <a class="nav-link collapsed" href="{% url 'liste_departement' %}">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Liste departement</span>
+                </a>
+            </li>
         {% endif %}
 
         {% if request.user.is_authenticated %}
