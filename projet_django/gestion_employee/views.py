@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
-from .models import Employee, Plannings, Departement
+from .models import Employee, Plannings, Departement, Salary
 
 def create_employee(request):
     departement = Departement.objects.all().values()
@@ -130,3 +130,27 @@ def list_departement(request):
     departement = Departement.objects.all().values()
     
     return render(request, "departement/list_departement.html", {"departement": departement})
+
+def paye_salary(request, id):
+    if request.method == "POST":
+        month = request.POST["month"]
+        year = request.POST["year"]
+        primes = request.POST["primes"]
+        deduction = request.POST["deduction"]
+        salary_net = request.POST["salary_net"]
+        
+        salary = Salary(
+            employee_id = id,
+            month=month,
+            year=year,
+            primes=primes,
+            deduction=deduction,
+            salary_net=salary_net
+        )
+        salary.save()
+    return render(request, "salaire/paye_salary.html")
+
+def list_salary(request):
+    salary = Salary.objects.select_related('employee').all()
+    
+    return render(request, "salaire/liste_salary.html", {"salary": salary})

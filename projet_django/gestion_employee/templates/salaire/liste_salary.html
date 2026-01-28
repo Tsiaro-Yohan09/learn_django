@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="card-title mb-0">Liste de salaire payer</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nom & Prénom</th>
+                            <th>Mois</th>
+                            <th>Année</th>
+                            <th>Primes</th>
+                            <th>Deduction</th>
+                            <th>Salaire Net</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sal in salary %}
+                        <tr>
+                            <td>
+                                <strong>{{ sal.employee.name.upper }}</strong><br>
+                                <small class="text-muted">{{ sal.employee.first_name }}</small>
+                            </td>
+                            <td>
+                                <small>{{ sal.month }}</small>
+                            </td>
+                            <td>
+                                <small class="fw-bold">{{ sal.year }}</small>
+                            </td>
+                            <td class="text-success fw-bold">{{ sal.primes }}</td>
+                            <td>{{ sal.deduction }}</td>
+                            <td class="text-info">{{ sal.salary_net }} Ar</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

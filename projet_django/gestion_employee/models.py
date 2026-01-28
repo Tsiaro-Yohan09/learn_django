@@ -1,3 +1,4 @@
+from pyexpat import model
 from tkinter import CASCADE
 from turtle import mode
 from django.db import models
@@ -23,3 +24,11 @@ class Plannings(models.Model):
     
 class Departement(models.Model):
     name_departement = models.TextField()
+    
+class Salary(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="salary_history")
+    month = models.TextField()
+    year = models.TextField()
+    primes = models.TextField()
+    deduction = models.TextField()
+    salary_net = models.FloatField()
