@@ -1,7 +1,9 @@
+from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
-from .models import Employee, Plannings, Departement, Salary
+from .models import (DemandeConger, Employee, Plannings,
+                     Departement, Salary, TypeConge)
 
 def create_employee(request):
     departement = Departement.objects.all().values()
@@ -154,3 +156,53 @@ def list_salary(request):
     salary = Salary.objects.select_related('employee').all()
     
     return render(request, "salaire/liste_salary.html", {"salary": salary})
+
+def types_conger(request):
+    if request.method == "POST":
+        name_conge = request.POST["name_conge"]
+        isPaye = request.POST["isPaye"]
+        justification = request.POST["justification"]
+        
+        type_conge = TypeConge(
+            name_conge=name_conge,
+            isPaye=isPaye,
+            justification=justification
+        )
+        type_conge.save()
+        
+        return redirect("/liste_employer")
+    
+    return render(request, "conges/types_conges.html")
+
+def demande_conges(request, id):
+    types_conger = TypeConge.objects.all().values()
+    
+    if request.method == "POST":
+        typeconge = request.POST["typeconge"]
+        date_debut = request.POST["date_debut"]
+        date_fin = request.POST["date_fin"]
+        status = request.POST["status"]
+        
+        date_debut = datetime.strptime(date_debut, '%Y-%m-%d').date()
+        date_fin = datetime.strptime(date_fin, '%Y-%m-%d').date()
+
+        total_day = date_fin - date_debut
+        
+        
+        new_conge = DemandeConger(
+            date_debut=date_debut,
+            date_fin=date_fin,
+            total_day=total_day.days,
+            status=status,
+            employee_id=id,
+            typeconge_id=typeconge
+        )
+        new_conge.save()
+        # return redirect("")
+        
+    return render(request, "conges/demande_conges.html", {"typeconge": types_conger})
+
+def liste_conges(request):
+    demande_conges = DemandeConger.objects.select_related("employee", "typeconge").all()
+    
+    return render(request, "conges/liste_conges.html", {"demande_conges": demande_conges})

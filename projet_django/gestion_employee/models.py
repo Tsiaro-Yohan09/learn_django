@@ -32,3 +32,16 @@ class Salary(models.Model):
     primes = models.TextField()
     deduction = models.TextField()
     salary_net = models.FloatField()
+    
+class TypeConge(models.Model):
+    name_conge = models.TextField()
+    isPaye = models.TextField()
+    justification = models.TextField()
+    
+class DemandeConger(models.Model):
+    typeconge = models.ForeignKey(TypeConge, on_delete=models.CASCADE, related_name="conges")
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="demande_conges")
+    date_debut = models.DateField()
+    date_fin = models.DateField()
+    total_day = models.IntegerField()
+    status = models.TextField()

@@ -64,6 +64,18 @@
                     <span>Liste departement</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'liste_salaire' %}">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Liste Salaire</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'liste_conger' %}">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Liste conger</span>
+                </a>
+            </li>
         {% endif %}
 
         {% if request.user.is_authenticated %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0">
+                <div class="card-header py-3" style="background-color: #3f6ad8;">
+                    <h5 class="text-white mb-0 text-center">
+                        <i class="bi bi-person-plus-fill me-2"></i>Demandes conges
+                    </h5>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Type de conges</label>
+                                <select name="typeconge" class="form-select">
+                                    {% for type in typeconge %}
+                                    <option value="{{ type.id }}">{{ type.name_conge }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-2 mb-3">
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Date debut</label>
+                                <input type="date" name="date_debut" class="form-control" required>
+                            </div>
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Date fin</label>
+                                <input type="date" name="date_fin" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-md">
+                                <label class="form-label small fw-bold">Satus</label>
+                                <select name="status" class="form-select">
+                                    <option value="En attente">En attente</option>
+                                    <option value="Valider">Valider</option>
+                                    <option value="Refuser">Refuser</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary shadow-sm" style="background-color: #3f6ad8; border: none;">
+                                <i class="bi bi-check-circle me-2"></i>Faire une demande
+                            </button>
+                            <a href="" class="btn btn-light btn-sm text-muted">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
