@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home_page',
-    'gestion_employee'
+    'gestion_employee',
+    'rest_framework',
+    'learn_api',
 ]
 
 MIDDLEWARE = [
@@ -112,6 +114,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Rest API avec le JWT
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
